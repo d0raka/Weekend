@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE GRAND FINALE ✨</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&display=swap');
+        
+        body { 
+            font-family: 'Assistant', sans-serif; 
+            background: #fff5f8; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            text-align: center; 
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* אפקט לבבות צפים ברקע */
+        .heart {
+            position: absolute;
+            color: #f8bbd0;
+            font-size: 20px;
+            user-select: none;
+            z-index: 1;
+            animation: float 10s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        .page { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 25px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            max-width: 550px; 
+            width: 90%; 
+            display: none; 
+            border: 1px solid #fce4ec; 
+            position: relative;
+            z-index: 10;
+        }
+
+        .active { display: block; animation: fadeIn 0.8s ease; }
+        
+        h1 { color: #d81b60; font-weight: 700; margin-bottom: 20px; font-size: 28px; }
+        p { font-size: 20px; line-height: 1.6; color: #444; }
+        
+        .nature-box { 
+            background: #fdf2f8; 
+            padding: 25px; 
+            border-radius: 15px; 
+            margin: 25px 0; 
+            border: 1px dashed #f8bbd0; 
+            font-size: 22px; 
+            color: #d81b60; 
+            font-weight: bold; 
+        }
+
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            margin: 20px 0; 
+            border: 2px solid #f8bbd0; 
+            border-radius: 12px; 
+            text-align: center; 
+            font-size: 18px; 
+            outline: none; 
+            box-sizing: border-box;
+        }
+        
+        input:focus { border-color: #d81b60; }
+        
+        button { 
+            background: #d81b60; 
+            color: white; 
+            border: none; 
+            padding: 15px 35px; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            font-size: 20px; 
+            font-weight: bold; 
+            transition: 0.3s; 
+            width: 100%; 
+        }
+        
+        button:hover { background: #ad1457; transform: scale(1.02); }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <script>
+        for (let i = 0; i < 20; i++) {
+            let heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            heart.style.delay = Math.random() * 5 + 's';
+            document.body.appendChild(heart);
+        }
+    </script>
+
+    <div class="page active" id="p0">
+        <h1>הפינאלה הגדולה... ✨</h1>
+        <p>דנדון אהובה, עברת שבוע מטורף!</p>
+        <p>הגענו לרגע האחרון. כדי לגלות מה קורה בסופ"ש הזה, נשארו רק כמה שלבים אחרונים.</p>
+        <p><b>מוכנה?</b></p>
+        <button onclick="go(1)">קדימה!</button>
+    </div>
+
+    <div class="page" id="p1">
+        <h1>רמז 1: הכיוון הכללי</h1>
+        <p>בסופ"ש הזה אנחנו עוזבים את העיר ונוסעים רחוק...</p>
+        <p><b>לאיזה אזור בארץ אנחנו נוסעים? (4 אותיות)</b></p>
+        <input id="ans1" placeholder="התשובה היא...">
+        <button onclick="check(1, 'צפון', 2)">קל!</button>
+    </div>
+
+    <div class="page" id="p2">
+        <h1>רמז 2: התחבורה שלנו</h1>
+        <p>הפעם אנחנו לא זקוקים למכונית כדי לטייל. אנחנו נשתמש ב"מכונית של פעם" כדי לראות את הנוף מלמעלה.</p>
+        <p><b>מי אני?</b></p>
+        <input id="ans2" placeholder="שם החיה...">
+        <button onclick="check(2, 'סוס', 3)">נכון מאוד!</button>
+    </div>
+
+    <div class="page" id="p3">
+        <h1>רמז 3: השם של הממלכה</h1>
+        <p>כדי לגלות את שם המקום, את צריכה לחבר שני חלקים:</p>
+        <p>1. השם הפרטי של ה"קינוח" הכי רומנטי (פרח אדום עם ריח מדהים).</p>
+        <p>2. המילה שמתארת את האזור הכי יפה בצפון (מקום של הרים, נחלים וירוק).</p>
+        <div class="nature-box">
+            _ _ _ &nbsp; &nbsp; ה _ _ _ _
+        </div>
+        <p><b>איפה אנחנו הולכים לישון הלילה?</b></p>
+        <input id="ans3" placeholder="שם כפר הנופש...">
+        <button onclick="check(3, 'ורד הגליל', 4)">זה בטוח זה!</button>
+    </div>
+
+    <div class="page" id="p4">
+        <h1>רמז 4: המסעדה</h1>
+        <p>בשישי בערב אנחנו אוכלים במסעדה של השף הכי מפורסם באזור. השם שלה קצר וקולע באנגלית.</p>
+        <p><b>רמז: זה מתחיל ב-T ונגמר ב-S (הכינוי של חיים טיבי).</b></p>
+        <input id="ans4" placeholder="שם המסעדה...">
+        <button onclick="go(5)">לגילוי המוחלט!</button>
+    </div>
+
+    <div id="p5" class="page">
+        <h1>ההפתעה נחשפת! 🔓</h1>
+        <p>עשית את זה!</p>
+        <p>סופ"ש של חופש, טבע ואוכל טוב מחכה לנו.</p>
+        <button onclick="checkFinal()">תראה לי הכל!</button>
+    </div>
+
+    <div class="page" id="p-final">
+        <h1>סופ"ש חלומי! 🐎🌹</h1>
+        <p>אנחנו נוסעים ל<b>כפר הנופש ורד הגליל</b>!</p>
+        <div class="nature-box">
+            🏇 טיול סוסים זוגי מול הכנרת <br>
+            🥩 ארוחת ערב ב-TIBI'S <br>
+            🍷 זמן איכות רק של שנינו
+        </div>
+        <p><b>אני אוהב אותך הכי בעולם!</b></p>
+    </div>
+
+    <script>
+        function go(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('p' + id).classList.add('active');
+        }
+
+        function check(id, correct, next) {
+            const val = document.getElementById('ans' + id).value.trim();
+            if(val.includes(correct) || (id === 4 && val.toLowerCase().includes('tibi'))) {
+                go(next);
+            } else { 
+                alert("ניחוש יפה, תנסי שוב..."); 
+            }
+        }
+
+        function checkFinal() {
+            go('-final');
+            
+            // אפקט קונפטי לבבות ורודים
+            var end = Date.now() + (5 * 1000);
+            var colors = ['#d81b60', '#f8bbd0', '#ffffff'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors,
+                    shapes: ['heart'] // קונפטי בצורת לבבות
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors,
+                    shapes: ['heart']
+                });
+                if (Date.now() < end) { requestAnimationFrame(frame); }
+            }());
+        }
+    </script>
+</body>
+</html>
